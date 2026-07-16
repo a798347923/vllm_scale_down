@@ -12,8 +12,7 @@ vLLM Scale-Down enables vLLM to **survive NPU failures** without restarting. Whe
 
 | Feature | Description |
 |---------|-------------|
-| **Hardware Fault Detection** | Polls NPU health via DCMI; detects card drops and error codes |
-| **Engine-Level Fault Reporting** | Engine crashes caught and reported via ZMQ within seconds |
+| **Fault Reporting** | Engine crashes caught and reported via ZMQ within seconds |
 | **Graceful Scale-Down** | Pauses affected ranks, redistributes experts, reloads weights |
 | **External API Control** | REST API for pause, retry, and scale_down instructions |
 
