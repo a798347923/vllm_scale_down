@@ -19,9 +19,9 @@
 
 | Model | Quantization | Status |
 |-------|--------------|--------|
-| DeepSeek-V3 (DSv3) | FP16 | Verified |
+| DeepSeek-V3 (DSv3) | W8A8 | Verified |
 | Qwen3-235B-A22B | W8A8 | Verified |
-| GLM5 | FP16 | Verified |
+| GLM5 | W8A8 | Verified |
 
 ### Test Results
 
