@@ -261,7 +261,6 @@ curl -X POST http://localhost:8006/fault_tolerance/apply \
 | `--enable-fault-tolerance` | `False` | Enable the fault tolerance framework |
 | `--fault-tolerance-config` | `None` | JSON dict for FT config (auto-enables FT). Accepts `engine_recovery_timeout_sec`, `external_fault_notify_port`, etc. |
 | `--gloo-timeout-seconds` | `None` (falls back to 600) | Gloo process group timeout |
-| `--recovery-timeout` | `120` | Shorthand for `engine_recovery_timeout_sec` — seconds to wait for FT instructions before re-raising the error |
 
 ### FaultToleranceConfig
 
