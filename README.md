@@ -102,11 +102,23 @@ python examples/Fault-Tolerance-scale/scale_down.py \
 
 The monitor is optional. Without it, the framework still catches engine exceptions, auto-pauses, and waits for manual `retry` or `scale_down` via the REST API:
 
+**Query current fault tolerance status:**
+
 ```bash
 curl http://localhost:8006/fault_tolerance/status
+```
+
+**Retry (restart all DP ranks):**
+
+```bash
 curl -X POST http://localhost:8006/fault_tolerance/apply \
     -H "Content-Type: application/json" \
     -d '{"instruction":"retry"}'
+```
+
+**Scale down (exclude specific DP ranks):**
+
+```bash
 curl -X POST http://localhost:8006/fault_tolerance/apply \
     -H "Content-Type: application/json" \
     -d '{"instruction":"scale_down","params":{"timeout":30,"exclude_dp_ranks":[2]}}'

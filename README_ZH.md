@@ -102,11 +102,23 @@ python examples/Fault-Tolerance-scale/scale_down.py \
 
 监控程序是可选的。不启动时，框架仍会拦截引擎异常、自动暂停，并等待通过 REST API 手动发送 `retry` 或 `scale_down`：
 
+**查询当前容错状态：**
+
 ```bash
 curl http://localhost:8006/fault_tolerance/status
+```
+
+**重试（重启所有 DP rank）：**
+
+```bash
 curl -X POST http://localhost:8006/fault_tolerance/apply \
     -H "Content-Type: application/json" \
     -d '{"instruction":"retry"}'
+```
+
+**缩容（排除指定 DP rank）：**
+
+```bash
 curl -X POST http://localhost:8006/fault_tolerance/apply \
     -H "Content-Type: application/json" \
     -d '{"instruction":"scale_down","params":{"timeout":30,"exclude_dp_ranks":[2]}}'
