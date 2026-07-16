@@ -7,7 +7,7 @@ REDUNDANT_EXPERTS=0
 FAULT_PORT=22867
 LOCAL_MODEL_PATH="nytopop/Qwen3-30B-A3B.w8a8"
 MODEL_NAME="/qwen-ai/Qwen3-30B-A3B-W8A8"
-GLOO_TIMEOUT=15
+GLOO_TIMEOUT=30
 RECOVERY_TIMEOUT=120
 
 while [[ $# -gt 0 ]]; do
@@ -74,6 +74,7 @@ done
 echo "Starting vLLM server for $MODEL_NAME with data parallel size: $DATA_PARALLEL_SIZE and redundant experts: $REDUNDANT_EXPERTS"
 
 export DYNAMIC_EPLB="true"
+export HCCL_BUFFSIZE=2048
 
 vllm serve $LOCAL_MODEL_PATH \
     --served-model-name $MODEL_NAME \
@@ -90,4 +91,5 @@ vllm serve $LOCAL_MODEL_PATH \
     --additional-config '{"eplb_config":{"dynamic_eplb": true, "num_redundant_experts":'${REDUNDANT_EXPERTS}'}}' \
     --quantization ascend \
     --host $HOST \
-    --port $PORT
+    --port $PORT \
+    --max-cudagraph-capture-size 512
