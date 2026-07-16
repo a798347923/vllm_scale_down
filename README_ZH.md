@@ -263,7 +263,6 @@ curl -X POST http://localhost:8006/fault_tolerance/apply \
 | `--enable-fault-tolerance` | `False` | 启用容错框架 |
 | `--fault-tolerance-config` | `None` | 容错配置 JSON 字典（自动启用 FT）。支持 `engine_recovery_timeout_sec`、`external_fault_notify_port` 等字段 |
 | `--gloo-timeout-seconds` | `None`（回退到 600） | Gloo 进程组超时时间 |
-| `--recovery-timeout` | `120` | `engine_recovery_timeout_sec` 的快捷参数——等待容错指令的超时时间（秒），超时后重新抛出原始错误 |
 
 ### 容错配置
 
