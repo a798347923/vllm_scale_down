@@ -104,6 +104,9 @@ python examples/Fault-Tolerance-scale/scale_down.py \
 curl http://localhost:8006/fault_tolerance/status
 curl -X POST http://localhost:8006/fault_tolerance/apply \
     -H "Content-Type: application/json" \
+    -d '{"instruction":"retry"}'
+curl -X POST http://localhost:8006/fault_tolerance/apply \
+    -H "Content-Type: application/json" \
     -d '{"instruction":"scale_down","params":{"timeout":30,"exclude_dp_ranks":[2]}}'
 ```
 
