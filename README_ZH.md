@@ -71,7 +71,6 @@ cd /vllm-workspace/vllm-ascend
 git submodule update --init --recursive
 # 修复：triton-ascend 3.2.1 仅适用于 v0.20+，降级到 3.2.0
 sed -i 's/triton-ascend==3.2.1/triton-ascend==3.2.0/' pyproject.toml
-pip uninstall triton -y
 pip install -e .
 ```
 

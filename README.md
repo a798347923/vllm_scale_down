@@ -71,7 +71,6 @@ cd /vllm-workspace/vllm-ascend
 git submodule update --init --recursive
 # Fix: triton-ascend 3.2.1 is only required for v0.20+; downgrade to 3.2.0
 sed -i 's/triton-ascend==3.2.1/triton-ascend==3.2.0/' pyproject.toml
-pip uninstall triton -y
 pip install -e .
 ```
 
