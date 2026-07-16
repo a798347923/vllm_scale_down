@@ -110,6 +110,33 @@ curl -X POST http://localhost:8006/fault_tolerance/apply \
     -d '{"instruction":"scale_down","params":{"timeout":30,"exclude_dp_ranks":[2]}}'
 ```
 
+## 特性支持情况
+
+| 特性 | 状态 | 说明 |
+|------|------|------|
+| 动态 EPLB | 已完全适配 | 故障后通过 EPLB 框架重新平衡专家放置 |
+| 量化模型（W8A8） | 已支持 | Ascend 格式 W8A8 量化模型已完成适配 |
+| 量化模型（W4A8） | 暂未支持 | W4A8 量化模型暂未适配 |
+| MTP（多 Token 预测） | 已支持 | 已完成适配，在 GLM5 上完成测试 |
+
+## 已知问题（v0.1.0）
+
+在**第二次缩容**时，以下问题偶现：
+
+1. **故障权重加载时长大幅增加** —— 第二次缩容后重新加载权重耗时远超第一次
+2. **`stop device` 无法停下** —— device 暂停无法完成，阻塞缩容流程
+3. **恢复后卡在 worker 的 `input_event` 同步中** —— worker 在恢复后等待 input_event 同步时卡住
+
+## 已测试模型
+
+本特性已在以下模型上完成验证：
+
+- DeepSeek-V3（DSv3）
+- Qwen3-235B-A22B（30B 激活参数）
+- GLM5
+
+其他类型的模型可能存在兼容性问题。
+
 ## 限制
 
 | 限制 | 说明 |

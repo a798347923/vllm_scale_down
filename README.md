@@ -110,6 +110,33 @@ curl -X POST http://localhost:8006/fault_tolerance/apply \
     -d '{"instruction":"scale_down","params":{"timeout":30,"exclude_dp_ranks":[2]}}'
 ```
 
+## Feature Status
+
+| Feature | Status | Notes |
+|---------|--------|-------|
+| Dynamic EPLB | Fully supported | Expert placement re-balanced after fault via EPLB framework |
+| Quantized models (W8A8) | Supported | Ascend-format W8A8 quantization adapted |
+| Quantized models (W4A8) | Not yet supported | W4A8 quantization not yet adapted |
+| MTP (Multi-Token Prediction) | Supported | Adapted and tested on GLM5 |
+
+## Known Issues (v0.1.0)
+
+During the **second scale-down**, the following issues may occasionally occur:
+
+1. **Fault weight loading time significantly increases** — reloading weights after a second scale-down may take much longer than the first
+2. **`stop device` cannot stop** — device pause may fail to complete, blocking the scale-down flow
+3. **Worker stuck in `input_event` synchronization** — after recovery, workers may hang waiting on input event synchronization
+
+## Tested Models
+
+This feature has been verified on the following models:
+
+- DeepSeek-V3 (DSv3)
+- Qwen3-235B-A22B (30B active)
+- GLM5
+
+Other model types may have compatibility issues.
+
 ## Limitations
 
 | Limitation | Description |
