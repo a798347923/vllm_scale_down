@@ -142,7 +142,7 @@ curl -X POST http://localhost:8006/fault_tolerance/apply \
 | 限制 | 说明 |
 |------|------|
 | 仅支持 Ascend 910C | 当前仅支持华为昇腾 910C NPU |
-| 必须开启 EP | 需启用 Expert Parallel（`--enable-ep`）才能使用容错特性 |
+| 必须开启 EP | 需启用 Expert Parallel（`--enable-expert-parallel`）才能使用容错特性 |
 | 仅支持 TP = 1 | 缩容仅支持 tensor parallel size 为 1 |
 | 不支持扩容 | 缩容后无法添加 NPU |
 | 不支持 Pipeline Parallel | PP 与缩容不兼容 |

@@ -142,7 +142,7 @@ Other model types may have compatibility issues.
 | Limitation | Description |
 |------------|-------------|
 | Ascend 910C only | Currently only supports Huawei Ascend 910C NPU |
-| EP required | Must enable Expert Parallel (`--enable-ep`) to use fault tolerance features |
+| EP required | Must enable Expert Parallel (`--enable-expert-parallel`) to use fault tolerance features |
 | TP = 1 only | Scale-down only supports tensor-parallel size of 1 |
 | No scale-up | Cannot add NPU capacity back after scale-down |
 | Pipeline parallel unsupported | PP is not compatible with scale-down |
