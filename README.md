@@ -83,7 +83,12 @@ cd ..
 ```bash
 # Terminal 1: Start vLLM with fault tolerance enabled
 cd vllm-ascend
-bash examples/Fault-Tolerance-scale/serve_qwen.sh --dp 4 --port 8006
+bash examples/Fault-Tolerance-scale/serve_qwen.sh \
+    --dp 4 \
+    --re 24 \
+    --fault-port 22867 \
+    --recovery-timeout 120 \
+    --port 8006
 ```
 
 Key flags explained:
@@ -104,6 +109,7 @@ Key flags explained:
 python examples/Fault-Tolerance-scale/scale_down.py \
     --npu-ids 0,1,2,3 \
     --interval-time 3 \
+    --external-fault-notify-port 22867 \
     --port 8006
 ```
 
