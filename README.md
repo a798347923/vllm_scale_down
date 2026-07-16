@@ -41,6 +41,14 @@ The result: your vLLM deployment **survives NPU failures** and continues serving
 - DCMI library (`/usr/local/dcmi/libdcmi.so`, optional — only needed for the NPU monitor)
 - Python packages: `zmq`, `msgspec`, `requests`
 
+### Step 0: Pull the Official Docker Image
+
+Pull the official vllm-ascend image to ensure CANN, torch_npu, and other dependencies are at the correct versions:
+
+```bash
+docker pull quay.io/ascend/vllm-ascend:v0.18.0-a3
+```
+
 ### Step 1: Apply the Patches
 
 Clone the target repositories and apply the patches:

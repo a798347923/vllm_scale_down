@@ -41,6 +41,14 @@
 - DCMI 库（`/usr/local/dcmi/libdcmi.so`，可选——仅启动 NPU 监控程序时需要）
 - Python 依赖：`zmq`、`msgspec`、`requests`
 
+### Step 0：拉取官方 Docker 镜像
+
+拉取 vllm-ascend 官方镜像，确保 CANN、torch_npu 等依赖版本正确：
+
+```bash
+docker pull quay.io/ascend/vllm-ascend:v0.18.0-a3
+```
+
 ### Step 1: 打补丁
 
 克隆目标仓库，回退到指定 commit 后应用补丁：
