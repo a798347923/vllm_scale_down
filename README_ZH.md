@@ -49,6 +49,12 @@
 docker pull quay.io/ascend/vllm-ascend:v0.18.0-a3
 ```
 
+然后启动并进入容器（后续所有步骤均在容器内执行）：
+
+```bash
+docker run -it --device /dev/davinci0 --device /dev/davinci1 --device /dev/davinci2 --device /dev/davinci3 --device /dev/davinci_manager --device /dev/devmm_svm --device /dev/hisi_hdc -v /usr/local/Ascend/driver:/usr/local/Ascend/driver -v /usr/local/dcmi:/usr/local/dcmi quay.io/ascend/vllm-ascend:v0.18.0-a3 bash
+```
+
 ### Step 1: 打补丁
 
 克隆目标仓库，回退到指定 commit 后应用补丁：

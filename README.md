@@ -49,6 +49,12 @@ Pull the official vllm-ascend image to ensure CANN, torch_npu, and other depende
 docker pull quay.io/ascend/vllm-ascend:v0.18.0-a3
 ```
 
+Then start and enter the container (all following steps should be executed inside the container):
+
+```bash
+docker run -it --device /dev/davinci0 --device /dev/davinci1 --device /dev/davinci2 --device /dev/davinci3 --device /dev/davinci_manager --device /dev/devmm_svm --device /dev/hisi_hdc -v /usr/local/Ascend/driver:/usr/local/Ascend/driver -v /usr/local/dcmi:/usr/local/dcmi quay.io/ascend/vllm-ascend:v0.18.0-a3 bash
+```
+
 ### Step 1: Apply the Patches
 
 Clone the target repositories and apply the patches:
