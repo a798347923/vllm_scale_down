@@ -52,7 +52,7 @@ docker pull quay.io/ascend/vllm-ascend:v0.18.0-a3
 然后启动并进入容器（后续所有步骤均在容器内执行）：
 
 ```bash
-docker run -it --device /dev/davinci0 --device /dev/davinci1 --device /dev/davinci2 --device /dev/davinci3 --device /dev/davinci_manager --device /dev/devmm_svm --device /dev/hisi_hdc -v /usr/local/Ascend/driver:/usr/local/Ascend/driver -v /usr/local/dcmi:/usr/local/dcmi quay.io/ascend/vllm-ascend:v0.18.0-a3 bash
+docker run -it --net=host --ipc=host --privileged=true -v /usr/local/sbin/npu-smi:/usr/local/sbin/npu-smi -v /etc/ascend_install.info:/etc/ascend_install.info -v /usr/local/Ascend/driver:/usr/local/Ascend/driver -v /usr/local/dcmi:/usr/local/dcmi quay.io/ascend/vllm-ascend:v0.18.0-a3 bash
 ```
 
 ### Step 1: 打补丁

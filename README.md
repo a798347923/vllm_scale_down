@@ -52,7 +52,7 @@ docker pull quay.io/ascend/vllm-ascend:v0.18.0-a3
 Then start and enter the container (all following steps should be executed inside the container):
 
 ```bash
-docker run -it --device /dev/davinci0 --device /dev/davinci1 --device /dev/davinci2 --device /dev/davinci3 --device /dev/davinci_manager --device /dev/devmm_svm --device /dev/hisi_hdc -v /usr/local/Ascend/driver:/usr/local/Ascend/driver -v /usr/local/dcmi:/usr/local/dcmi quay.io/ascend/vllm-ascend:v0.18.0-a3 bash
+docker run -it --net=host --ipc=host --privileged=true -v /usr/local/sbin/npu-smi:/usr/local/sbin/npu-smi -v /etc/ascend_install.info:/etc/ascend_install.info -v /usr/local/Ascend/driver:/usr/local/Ascend/driver -v /usr/local/dcmi:/usr/local/dcmi quay.io/ascend/vllm-ascend:v0.18.0-a3 bash
 ```
 
 ### Step 1: Apply the Patches
