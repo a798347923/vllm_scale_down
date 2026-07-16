@@ -57,39 +57,35 @@ docker run -it --device /dev/davinci0 --device /dev/davinci1 --device /dev/davin
 
 ### Step 1: 打补丁
 
-克隆目标仓库，回退到指定 commit 后应用补丁：
+Docker 镜像中已包含 vLLM 和 vLLM-Ascend 源码，位于 `/vllm-workspace/` 目录下。检查分支和 commit 是否正确，确认后打补丁：
 
 ```bash
-# 克隆 vLLM 并回退到测试通过的 commit
-git clone https://github.com/vllm-project/vllm.git
-cd vllm
+# 检查 vLLM 分支和 commit
+cd /vllm-workspace/vllm
+git fetch --all
 git checkout v0.18.0
 git reset --hard bcf2be96
 git apply /path/to/patches/vllm_scale_down.patch
-cd ..
 
-# 克隆 vLLM-Ascend 并回退到测试通过的 commit
-git clone https://github.com/vllm-project/vllm-ascend.git
-cd vllm-ascend
+# 检查 vLLM-Ascend 分支和 commit
+cd /vllm-workspace/vllm-ascend
+git fetch --all
 git checkout v0.18.0
 git reset --hard 4a533861
 git apply /path/to/patches/vllm_ascend_scale_down.patch
-cd ..
 ```
 
 ### Step 2: 安装
 
 ```bash
 # 安装 vLLM
-cd vllm
+cd /vllm-workspace/vllm
 VLLM_TARGET_DEVICE=empty pip install -e .
-cd ..
 
 # 安装 vLLM Ascend
-cd vllm-ascend
+cd /vllm-workspace/vllm-ascend
 git submodule update --init --recursive
 pip install -e .
-cd ..
 ```
 
 ### Step 3: 启动 vLLM 服务

@@ -57,39 +57,35 @@ docker run -it --device /dev/davinci0 --device /dev/davinci1 --device /dev/davin
 
 ### Step 1: Apply the Patches
 
-Clone the target repositories and apply the patches:
+The Docker image already contains vLLM and vLLM-Ascend source code under `/vllm-workspace/`. Check the branch and commit, and apply the patches:
 
 ```bash
-# Clone vLLM and reset to the tested commit
-git clone https://github.com/vllm-project/vllm.git
-cd vllm
+# Check vLLM branch and commit
+cd /vllm-workspace/vllm
+git fetch --all
 git checkout v0.18.0
 git reset --hard bcf2be96
 git apply /path/to/patches/vllm_scale_down.patch
-cd ..
 
-# Clone vLLM-Ascend and reset to the tested commit
-git clone https://github.com/vllm-project/vllm-ascend.git
-cd vllm-ascend
+# Check vLLM-Ascend branch and commit
+cd /vllm-workspace/vllm-ascend
+git fetch --all
 git checkout v0.18.0
 git reset --hard 4a533861
 git apply /path/to/patches/vllm_ascend_scale_down.patch
-cd ..
 ```
 
 ### Step 2: Install
 
 ```bash
 # Install vLLM
-cd vllm
+cd /vllm-workspace/vllm
 VLLM_TARGET_DEVICE=empty pip install -e .
-cd ..
 
 # Install vLLM Ascend
-cd vllm-ascend
+cd /vllm-workspace/vllm-ascend
 git submodule update --init --recursive
 pip install -e .
-cd ..
 ```
 
 ### Step 3: Start vLLM Service
