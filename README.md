@@ -17,7 +17,6 @@ vLLM Scale-Down enables vLLM to **survive NPU failures** without restarting. Whe
 | **Graceful Scale-Down** | Pauses affected ranks, redistributes experts, reloads weights |
 | **Dynamic EPLB Integration** | Expert placement re-balanced after fault via EPLB framework |
 | **External API Control** | REST API for pause, retry, and scale_down instructions |
-| **Zero-Downtime Recovery** | Surviving NPUs resume serving automatically |
 
 ## Latest Version
 
