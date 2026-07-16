@@ -121,6 +121,8 @@ curl -X POST http://localhost:8006/fault_tolerance/apply \
 | 量化模型（W8A8） | 已支持 | Ascend 格式 W8A8 量化模型已完成适配 |
 | 量化模型（W4A8） | 暂未支持 | W4A8 量化模型暂未适配 |
 | MTP（多 Token 预测） | 已支持 | 已完成适配，在 GLM5 上完成测试 |
+| `--enforce-eager` 模式 | 已支持 | 禁用图捕获，以 eager 模式运行 |
+| PIECEWISE ACL Graph 模式 | 已支持 | 大模型分块图捕获 |
 
 ## 已知问题（v0.1.0）
 

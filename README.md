@@ -121,6 +121,8 @@ curl -X POST http://localhost:8006/fault_tolerance/apply \
 | Quantized models (W8A8) | Supported | Ascend-format W8A8 quantization adapted |
 | Quantized models (W4A8) | Not yet supported | W4A8 quantization not yet adapted |
 | MTP (Multi-Token Prediction) | Supported | Adapted and tested on GLM5 |
+| `--enforce-eager` mode | Supported | Disables graph capture, runs in eager mode |
+| PIECEWISE ACL Graph mode | Supported | Chunked graph capture for large models |
 
 ## Known Issues (v0.1.0)
 
