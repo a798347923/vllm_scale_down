@@ -344,7 +344,7 @@ When NPU #3 fails:
 | TP = 1 only | Scale-down currently only supports tensor-parallel size of 1 |
 | No scale-up | Cannot add NPU capacity back after scale-down (one-directional) |
 | Pipeline parallel unsupported | PP is not compatible with the current scale-down implementation |
-| Redundant experts budget | Total redundant experts across healthy cards must exceed the non-redundant experts on the failed card; otherwise the failed card's experts cannot be fully covered after scale-down |
+| Redundant experts budget (scale-down) | To perform scale-down successfully, total redundant experts across healthy cards must exceed the non-redundant experts on the failed card; otherwise the failed card's experts cannot be fully covered after removal |
 
 ---
 
