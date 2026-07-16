@@ -132,7 +132,7 @@ During the **second scale-down**, the following issues may occasionally occur:
 This feature has been verified on the following models:
 
 - DeepSeek-V3 (DSv3)
-- Qwen3-235B-A22B (30B active)
+- Qwen3-235B-A22B 
 - GLM5
 
 Other model types may have compatibility issues.
@@ -142,6 +142,7 @@ Other model types may have compatibility issues.
 | Limitation | Description |
 |------------|-------------|
 | Ascend 910C only | Currently only supports Huawei Ascend 910C NPU |
+| EP required | Must enable Expert Parallel (`--enable-ep`) to use fault tolerance features |
 | TP = 1 only | Scale-down only supports tensor-parallel size of 1 |
 | No scale-up | Cannot add NPU capacity back after scale-down |
 | Pipeline parallel unsupported | PP is not compatible with scale-down |
