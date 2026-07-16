@@ -85,7 +85,7 @@ cd ..
 cd vllm-ascend
 bash examples/Fault-Tolerance-scale/serve_qwen.sh \
     --dp 4 \
-    --re 24 \
+    --re 48 \
     --fault-port 22867 \
     --recovery-timeout 120 \
     --port 8006
