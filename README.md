@@ -85,6 +85,8 @@ VLLM_TARGET_DEVICE=empty pip install -e .
 # Install vLLM Ascend
 cd /vllm-workspace/vllm-ascend
 git submodule update --init --recursive
+Adjust triton-ascend version from 3.2.1 to 3.2.0 in /vllm-workspace/vllm-ascend/pyproject.toml # Bug in vllm-ascend: triton-ascend 3.2.1 is only required for v0.20+
+pip uninstall triton
 pip install -e .
 ```
 

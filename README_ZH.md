@@ -85,6 +85,7 @@ VLLM_TARGET_DEVICE=empty pip install -e .
 # 安装 vLLM Ascend
 cd /vllm-workspace/vllm-ascend
 git submodule update --init --recursive
+修改/vllm-workspace/vllm-ascend/pyproject.toml中triton-ascend的版本从3.2.1改为3.2.0 #这是vllm-ascend的一个bug，v0.20以上版本才需要3.2.1
 pip install -e .
 ```
 
