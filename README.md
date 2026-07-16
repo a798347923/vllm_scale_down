@@ -35,7 +35,9 @@ See [RELEASE_NOTES.md](RELEASE_NOTES.md) for full release history.
 - Docker with access to `quay.io/ascend/vllm-ascend:v0.18.0-a3`
 - DCMI library (optional, only for NPU hardware monitor)
 
-### Step 0: Pull the Official Docker Image
+### Installation
+
+#### Step 1: Pull the Official Docker Image
 
 ```bash
 docker pull quay.io/ascend/vllm-ascend:v0.18.0-a3
@@ -47,7 +49,7 @@ docker run -it --net=host --ipc=host --privileged=true \
     quay.io/ascend/vllm-ascend:v0.18.0-a3 bash
 ```
 
-### Step 1: Apply the Patches
+#### Step 2: Apply the Patches
 
 ```bash
 cd /vllm-workspace/vllm
@@ -59,7 +61,7 @@ git fetch --all && git checkout v0.18.0 && git reset --hard 4a533861
 git apply /path/to/patches/vllm_ascend_scale_down.patch
 ```
 
-### Step 2: Install
+#### Step 3: Install
 
 ```bash
 cd /vllm-workspace/vllm
@@ -70,14 +72,25 @@ git submodule update --init --recursive
 pip install -e .
 ```
 
-### Step 3: Start vLLM Service
+### Usage
+
+Reference scripts are provided under `examples/Fault-Tolerance-scale/`:
+
+| Script | Description |
+|--------|-------------|
+| `serve_qwen.sh` | Start vLLM service with fault tolerance enabled |
+| `scale_down.py` | NPU hardware fault monitor (optional) |
+
+> **Note:** Before running `serve_qwen.sh`, you must configure the model parameters (`LOCAL_MODEL_PATH`, `MODEL_NAME`, etc.) in the script or override them via command-line arguments to match your environment.
+
+#### Start vLLM Service
 
 ```bash
 bash examples/Fault-Tolerance-scale/serve_qwen.sh \
     --dp 4 --re 48 --fault-port 22867 --recovery-timeout 120 --port 8006
 ```
 
-### Step 4 (Optional): Start the Monitor
+#### Start the Monitor (Optional)
 
 ```bash
 python examples/Fault-Tolerance-scale/scale_down.py \
@@ -85,7 +98,7 @@ python examples/Fault-Tolerance-scale/scale_down.py \
     --external-fault-notify-port 22867 --port 8006
 ```
 
-The monitor is optional. Without it, the framework still catches engine exceptions, auto-pauses, and waits for manual `retry` or `scale_down` via the REST API.
+The monitor is optional. Without it, the framework still catches engine exceptions, auto-pauses, and waits for manual `retry` or `scale_down` via the REST API:
 
 ```bash
 curl http://localhost:8006/fault_tolerance/status
