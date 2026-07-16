@@ -25,6 +25,7 @@
 | Argument | Default | Description |
 |----------|---------|-------------|
 | `--enable-fault-tolerance` | `False` | Enable the fault tolerance framework |
+| `--enable-expert-parallel` | `False` | Enable Expert Parallel (required for fault tolerance) |
 | `--fault-tolerance-config` | `None` | JSON dict for FT config (auto-enables FT) |
 | `--gloo-timeout-seconds` | `None` (falls back to 600) | Gloo process group timeout in seconds |
 
@@ -49,7 +50,7 @@
 | `--model-name` | `/qwen-ai/Qwen3-30B-A3B-W8A8` | Model name or path |
 | `--local-model` | `nytopop/Qwen3-30B-A3B.w8a8` | Local model path |
 | `--recovery-timeout` | `120` | Engine recovery timeout (seconds) |
-| `--gloo-timeout-seconds` | `15` | Gloo communication group timeout (seconds) |
+| `--gloo-timeout-seconds` | `30` | Gloo communication group timeout (seconds) |
 
 ## REST API
 
@@ -94,6 +95,17 @@ Returns current engine health status.
     ]
 }
 ```
+
+## Feature Status
+
+| Feature | Status | Notes |
+|---------|--------|-------|
+| Dynamic EPLB | Fully supported | Expert placement re-balanced after fault via EPLB framework |
+| Quantized models (W8A8) | Supported | Ascend-format W8A8 quantization adapted |
+| Quantized models (W4A8) | Not yet supported | W4A8 quantization not yet adapted |
+| MTP (Multi-Token Prediction) | Supported | Adapted and tested on GLM5 |
+| `--enforce-eager` mode | Supported | Disables graph capture, runs in eager mode |
+| PIECEWISE ACL Graph mode | Supported | Chunked graph capture for large models |
 
 ## Communication Channels
 

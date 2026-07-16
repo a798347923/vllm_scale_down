@@ -13,8 +13,24 @@
 - REST API for external fault tolerance control (`/fault_tolerance/apply`, `/fault_tolerance/status`)
 - Graceful scale-down: pause affected ranks, redistribute experts, reload weights, reinitialize communication groups
 - Dynamic EPLB integration for expert load balancing after fault
-- External NPU hardware monitor via DCMI polling
-- Support for Qwen3-30B-A3B model with W8A8 quantization on Ascend 910C
+- External NPU hardware fault monitor via DCMI polling
+- `--enforce-eager` mode support
+- PIECEWISE ACL Graph mode support
+- MTP (Multi-Token Prediction) support
+
+### Tested Models
+
+- DeepSeek-V3 (DSv3)
+- Qwen3-235B-A22B
+- GLM5
+
+### Known Issues
+
+During the **second scale-down**, the following issues may occasionally occur:
+
+1. Fault weight loading time significantly increases
+2. `stop device` cannot stop, blocking the scale-down flow
+3. Worker stuck in `input_event` synchronization after recovery
 
 ### Patches
 

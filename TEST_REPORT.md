@@ -14,7 +14,14 @@
 | Docker Image | `quay.io/ascend/vllm-ascend:v0.18.0-a3` |
 | vLLM | v0.18.0 |
 | vllm-ascend | v0.18.0 |
-| Model | Qwen3-30B-A3B (W8A8) |
+
+### Tested Models
+
+| Model | Quantization | Status |
+|-------|--------------|--------|
+| DeepSeek-V3 (DSv3) | FP16 | Verified |
+| Qwen3-235B-A22B | W8A8 | Verified |
+| GLM5 | FP16 | Verified |
 
 ### Test Results
 
@@ -31,6 +38,8 @@
 | REST API /fault_tolerance/apply | | |
 | Multi-DP rank failover | | |
 | Expert redistribution after scale-down | | |
+| `--enforce-eager` mode | | |
+| PIECEWISE ACL Graph mode | | |
 
 ### Summary
 
